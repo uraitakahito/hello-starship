@@ -15,10 +15,11 @@ RUN apt-get update && \
   apt-get install -y vim && \
   apt-get install -y sed && \
   apt-get install -y curl && \
-  apt-get install -y git
+  apt-get install -y git && \
+  apt-get install -y sudo
 
-COPY bin/setUserGroup.sh /bin
-RUN /bin/setUserGroup.sh ${group_id} ${user_id} ${user_name}
+COPY bin/set-superuser-and-group.sh /bin
+RUN /bin/set-superuser-and-group.sh ${group_id} ${user_id} ${user_name}
 
 RUN touch ${home}/.zshrc
 
